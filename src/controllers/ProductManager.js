@@ -42,6 +42,22 @@ class ProductManager {
         }
     }
 
+    updateProduct = async (id, product) => {
+        try {
+            let products = await fs.readFile(this.path, 'utf-8');
+            let productsParse = JSON.parse(products);
+            let productIndex = productsParse.findIndex(product => product.id === id);
+            if (productIndex === -1) {
+                return "Product not found!";
+            }
+            productsParse[productIndex] = { ...productsParse[productIndex], ...product };
+            await fs.writeFile(this.path, JSON.stringify(productsParse, null, 2));
+            return "Product updated successfully!";
+        } catch (error) {
+            throw new Error('Unable to update product');
+        }
+    }
+
     deleteProduct = async (id) => {
         try {
             let products = await fs.readFile(this.path, 'utf-8');
