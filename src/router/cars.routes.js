@@ -73,7 +73,6 @@ CarRouter.delete('/:cid/products/:pid', async (req, res) => {
         const message = await CarManager.removeProductFromCar(cid, pid);
         res.send({ message });
     } catch (error) {
-        console.error('Error removing product from car:', error);
         res.status(500).send({ error: 'Unable to remove product from car' });
     }
 }); // Cierre del paréntesis
