@@ -63,5 +63,18 @@
       "images/thumbnails-blue-pen.jpg"
     ],
     "id": "t51Due6kzdNHBeCp8gARS"
+  },
+  {
+    "title": "Cuaderno cuadriculado",
+    "description": "Cuanderno cuadriculado",
+    "code": "squarebook",
+    "price": 125,
+    "status": true,
+    "stock": 200,
+    "category": "school",
+    "thumbnails": [
+      "images/thumbnails-square-book.jpg"
+    ],
+    "id": "PwHYgbuO4nmbj-Xczm87Z"
   }
 ]

@@ -34,7 +34,7 @@ ProductRouter.post("/", async (req, res) => {
     try {
         const newProduct = req.body;
         const message = await productManager.writeProducts(newProduct);
-        res.send({ message });
+        res.send({ status:"success", message });
     } catch (error) {
         console.error('Error adding product:', error);
         res.status(500).send({ error: 'Unable to add product' });

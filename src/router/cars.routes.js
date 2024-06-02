@@ -7,7 +7,7 @@ CarRouter.post("/", async (req, res) => {
     try {
         const newCar = req.body;
         const message = await CarManager.writeCars(newCar);
-        res.send({ message });
+        res.send({ status:"success",message });
     } catch (error) {
         console.error('Error adding car:', error);
         res.status(500).send({ error: 'Unable to add car' });
