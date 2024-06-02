@@ -33,8 +33,8 @@ sh
     npm run dev
 
 Uso
-
-El servidor se ejecutará en http://localhost:3000. Puedes interactuar con el API utilizando herramientas como Postman o cURL.
+[!NOTE]
+El servidor se ejecutará en http://localhost:8082. Puedes interactuar con el API utilizando herramientas como Postman o cURL.
 Estructura del Proyecto
 
 plaintext
