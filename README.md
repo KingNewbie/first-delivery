@@ -5,12 +5,12 @@
 Contenidos
 
   
-[Instalación](#Instalación)
-[Uso](#uso)
-[Estructura del Proyecto](#estructura-del-proyecto)
-[API Endpoints](#api-endpoints)
-[Contribuciones](#contribuciones)
-[Licencia](#licencia)
+- [Instalación](#Instalación)
+- [Uso](#uso)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [API Endpoints](#api-endpoints)
+- [Contribuciones](#contribuciones)
+- [Licencia](#licencia)
 
 ## Instalación
 
