@@ -97,17 +97,12 @@ class CarManager {
                 return "Car not found!";
             }
             let car = carsParse[carIndex];
-            let product = await productAll.getProductById(pid); // Asegúrate de que productAll.getProductById(pid) es una función válida que retorna el producto.
-            if (!product) {
-                return "Product not found!";
-            }
             car.products = car.products || [];
             let productInCar = car.products.find(p => p.id === pid);
             if (productInCar) {
-                productInCar.cantidad = (productInCar.cantidad || 0) + 1; // Asegurarse de que cantidad no es undefined
+                productInCar.quantity += 1; 
             } else {
-                productInCar = { ...product, cantidad: 1 }; // Inicializar cantidad a 1
-                car.products.push(productInCar);
+                car.products.push({ id: pid, quantity: 1 }); 
             }
             await fs.writeFile(this.path, JSON.stringify(carsParse, null, 2));
             return "Product added to car successfully!";
@@ -116,7 +111,41 @@ class CarManager {
         }
     };
 
-    }
+    removeProductFromCar = async (cid, pid) => {
+        try {
+            let cars = await fs.readFile(this.path, 'utf-8');
+            let carsParse = JSON.parse(cars);
+            let carIndex = carsParse.findIndex(car => car.id === cid);
+            if (carIndex === -1) {
+                return "Car not found!";
+            }
+            let car = carsParse[carIndex];
+            if (!car.products) {
+                return "Product not found in car!";
+            }
+            car.products = car.products.filter(product => product.id !== pid);
+            await fs.writeFile(this.path, JSON.stringify(carsParse, null, 2));
+            return "Product removed from car successfully!";
+        } catch (error) {
+            throw new Error('Unable to remove product from car');
+        }
+    };
+
+    getProductsFromCar = async (cid) => {
+        try {
+            let cars = await fs.readFile(this.path, 'utf-8');
+            let carsParse = JSON.parse(cars);
+            let car = carsParse.find(car => car.id === cid);
+            if (!car) {
+                return "Car not found!";
+            }
+            return car.products || [];
+        } catch (error) {
+            throw new Error('Unable to fetch products from car');
+        }
+    };
+
+}
 
 
 

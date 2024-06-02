@@ -1,20 +1,67 @@
 [
   {
-    "nombre": "Reinaldo",
-    "apellido": "Loyo",
-    "edad": 45,
-    "id": "PXBhVn183GurHAg56wJqP"
+    "title": "Cuaderno",
+    "description": "Cuaderno simple una sola linea",
+    "code": "booksimple",
+    "price": 125,
+    "status": true,
+    "stock": 100,
+    "category": "school",
+    "thumbnails": [
+      "images/thumbnails-book.jpg"
+    ],
+    "id": "wKIac3I0WiXSMaJ0LVDbm"
   },
   {
-    "nombre": "Nayibe",
-    "apellido": "Loyo",
-    "edad": 49,
-    "id": "M4v8L7Sc261iTYmn5Vwcl"
+    "title": "Lapiz",
+    "description": "Lapiz de grafito HR",
+    "code": "pencilHR",
+    "price": 15,
+    "status": true,
+    "stock": 500,
+    "category": "school",
+    "thumbnails": [
+      "images/thumbnails-pencil.jpg"
+    ],
+    "id": "dnlQTUkCUDWjNat1N2WnO"
   },
   {
-    "nombre": "Juan Junior",
-    "apellido": "Monserrat",
-    "edad": 38,
-    "id": "Yo6MoC-N8L7P0PraENSRg"
+    "title": "Borrador",
+    "description": "Borrador de goma chico",
+    "code": "eraserlitle",
+    "price": 25,
+    "status": true,
+    "stock": 200,
+    "category": "school",
+    "thumbnails": [
+      "images/thumbnails-eraser.jpg"
+    ],
+    "id": "9HxczvClajAd6MZgo9CW1"
+  },
+  {
+    "title": "Juego de reglas",
+    "description": "Juego de reglas plasticas",
+    "code": "kitrules",
+    "price": 250,
+    "status": true,
+    "stock": 100,
+    "category": "school",
+    "thumbnails": [
+      "images/thumbnails-kit-rules.jpg"
+    ],
+    "id": "IS7Ll9_isJJfT3fH7918I"
+  },
+  {
+    "title": "Boligrafos",
+    "description": "Boligrafos punta fina azul",
+    "code": "bluepen",
+    "price": 50,
+    "status": true,
+    "stock": 300,
+    "category": "school",
+    "thumbnails": [
+      "images/thumbnails-blue-pen.jpg"
+    ],
+    "id": "t51Due6kzdNHBeCp8gARS"
   }
 ]

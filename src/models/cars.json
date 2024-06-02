@@ -1,58 +1,10 @@
 [
   {
-    "nombre": "Juan Junior",
-    "apellido": "Monserrat",
-    "edad": 38,
-    "id": "1pOdNmPTrWUd0fgCQzt0A"
-  },
-  {
-    "id": "HvCqoWkJG_jSQLEd-mItz",
+    "id": "puwe0LaS3qLGli05GPF7c",
     "products": [
       {
-        "nombre": "Reinaldo",
-        "apellido": "Loyo",
-        "edad": 45,
-        "id": "PXBhVn183GurHAg56wJqP",
-        "cantidad": 2
-      },
-      {
-        "nombre": "Nayibe",
-        "apellido": "Loyo",
-        "edad": 49,
-        "id": "M4v8L7Sc261iTYmn5Vwcl",
-        "cantidad": 1
-      }
-    ]
-  },
-  {
-    "id": "EJN_7xhw3yIA3_R1W7l3n"
-  },
-  {
-    "id": "1oBkp4rdocewzN2uvwurM"
-  },
-  {
-    "id": "3dN8Swz86acaDI-1YhXMH",
-    "products": [
-      {
-        "nombre": "Nayibe",
-        "apellido": "Loyo",
-        "edad": 49,
-        "id": "M4v8L7Sc261iTYmn5Vwcl",
-        "cantidad": 2
-      },
-      {
-        "nombre": "Juan Junior",
-        "apellido": "Monserrat",
-        "edad": 38,
-        "id": "Yo6MoC-N8L7P0PraENSRg",
-        "cantidad": 2
-      },
-      {
-        "nombre": "Reinaldo",
-        "apellido": "Loyo",
-        "edad": 45,
-        "id": "PXBhVn183GurHAg56wJqP",
-        "cantidad": 1
+        "id": "9HxczvClajAd6MZgo9CW1",
+        "quantity": 1
       }
     ]
   }

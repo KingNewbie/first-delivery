@@ -70,8 +70,29 @@ CarRouter.post('/:cid/products/:pid', async (req, res) => {
         console.error('Error adding product to car:', error);
         res.status(500).send({ error: 'Unable to add product to car' });
     }
-}
-);
+});
+
+CarRouter.delete('/:cid/products/:pid', async (req, res) => {
+    try {
+        const { cid, pid } = req.params;
+        const message = await CarManager.removeProductFromCar(cid, pid);
+        res.send({ message });
+    } catch (error) {
+        console.error('Error removing product from car:', error);
+        res.status(500).send({ error: 'Unable to remove product from car' });
+    }
+}); // Cierre del paréntesis
+
+CarRouter.get('/:cid/products', async (req, res) => {
+    try {
+        const { cid } = req.params;
+        const products = await CarManager.getProductsFromCar(cid);
+        res.send(products);
+    } catch (error) {
+        console.error('Error fetching products from car:', error);
+        res.status(500).send({ error: 'Unable to fetch products from car' });
+    }
+});
 
 export {CarRouter}; 
 
