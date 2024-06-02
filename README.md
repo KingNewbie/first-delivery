@@ -56,7 +56,7 @@ proyecto-carrito-compras/
 
 
 ## API Endpoints
-Carritos
+### Carritos
 
     Crear un nuevo carrito
         Endpoint: POST /api/cars
@@ -69,7 +69,7 @@ Carritos
       "message": "Car added successfully!"
     }
 
-Obtener todos los carritos
+### Obtener todos los carritos
 
     Endpoint: GET /api/cars
     Descripción: Obtiene una lista de todos los carritos.
@@ -84,7 +84,7 @@ Obtener todos los carritos
       }
     ]
 
-Obtener un carrito por ID
+### Obtener un carrito por ID
 
     Endpoint: GET /api/cars/:id
     Descripción: Obtiene un carrito específico por ID.
@@ -97,7 +97,7 @@ Obtener un carrito por ID
       "products": []
     }
 
-Agregar un producto al carrito
+### Agregar un producto al carrito
 
     Endpoint: POST /api/cars/:cid/products/:pid
     Descripción: Agrega un producto al carrito con el ID cid y el producto con el ID pid.
@@ -109,7 +109,7 @@ Agregar un producto al carrito
       "message": "Product added to car successfully!"
     }
 
-Eliminar un producto del carrito
+### Eliminar un producto del carrito
 
     Endpoint: DELETE /api/cars/:cid/products/:pid
     Descripción: Elimina un producto del carrito con el ID cid y el producto con el ID pid.
@@ -121,7 +121,7 @@ Eliminar un producto del carrito
       "message": "Product removed from car successfully!"
     }
 
-Obtener productos de un carrito
+### Obtener productos de un carrito
 
     Endpoint: GET /api/cars/:cid/products
     Descripción: Obtiene todos los productos de un carrito específico.
@@ -136,7 +136,7 @@ Obtener productos de un carrito
           }
         ]
 
-Productos
+### Productos
 
     Obtener todos los productos
         Endpoint: GET /api/products
@@ -159,7 +159,7 @@ Productos
       }
     ]
 
-Obtener un producto por ID
+### Obtener un producto por ID
 
     Endpoint: GET /api/products/:id
     Descripción: Obtiene un producto específico por ID.
@@ -179,7 +179,7 @@ Obtener un producto por ID
       "thumbnails": ["image.jpg"]
     }
 
-Crear un nuevo producto
+### Crear un nuevo producto
 
     Endpoint: POST /api/products
     Descripción: Crea un nuevo producto.
