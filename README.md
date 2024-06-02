@@ -14,7 +14,7 @@
 
 - ### Clona el repositorio:
   - git clone https://github.com/KingNewbie/first-delivery.git
-cd proyecto-carrito-compras ⏎ 
+  - cd proyecto-carrito-compras ⏎ 
 
 - ### Instala las dependencias:
   - npm install ⏎ 
