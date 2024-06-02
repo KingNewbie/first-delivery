@@ -11,7 +11,6 @@ ProductRouter.get("/", async (req, res) => {
         const products = await productManager.getProducts();
         res.send(products);
     } catch (error) {
-        console.error('Error fetching products:', error);
         res.status(500).send({ error: 'Unable to fetch products' });
     }
 });
@@ -36,7 +35,6 @@ ProductRouter.post("/", async (req, res) => {
         const message = await productManager.writeProducts(newProduct);
         res.send({ status:"success", message });
     } catch (error) {
-        console.error('Error adding product:', error);
         res.status(500).send({ error: 'Unable to add product' });
     }
 });
@@ -48,7 +46,6 @@ ProductRouter.put("/:id", async (req, res) => {
         const message = await productManager.updateProduct(id, product);
         res.send({ message });
     } catch (error) {
-        console.error('Error updating product:', error);
         res.status(500).send({ error: 'Unable to update product' });
     }
 });
@@ -60,7 +57,6 @@ ProductRouter.delete("/:id", async (req, res) => {
         const message = await productManager.deleteProduct(id);
         res.send({ message });
     } catch (error) {
-        console.error('Error deleting product:', error);
         res.status(500).send({ error: 'Unable to delete product' });
     }
 });

@@ -9,7 +9,6 @@ CarRouter.post("/", async (req, res) => {
         const message = await CarManager.writeCars(newCar);
         res.send({ status:"success",message });
     } catch (error) {
-        console.error('Error adding car:', error);
         res.status(500).send({ error: 'Unable to add car' });
     }
 });
@@ -19,7 +18,6 @@ CarRouter.get("/", async (req, res) => {
         const cars = await CarManager.getCars();
         res.send(cars);
     } catch (error) {
-        console.error('Error fetching cars:', error);
         res.status(500).send({ error: 'Unable to fetch cars' });
     }
 });
@@ -45,7 +43,6 @@ CarRouter.put("/:id", async (req, res) => {
         const message = await CarManager.updateCar(id, car);
         res.send({ message });
     } catch (error) {
-        console.error('Error updating car:', error);
         res.status(500).send({ error: 'Unable to update car' });
     }
 });
@@ -56,7 +53,6 @@ CarRouter.delete("/:id", async (req, res) => {
         const message = await CarManager.deleteCar(id);
         res.send({ message });
     } catch (error) {
-        console.error('Error deleting car:', error);
         res.status(500).send({ error: 'Unable to delete car' });
     }
 });
@@ -67,7 +63,6 @@ CarRouter.post('/:cid/products/:pid', async (req, res) => {
         const message = await CarManager.addProductToCar(cid, pid);
         res.send({ message });
     } catch (error) {
-        console.error('Error adding product to car:', error);
         res.status(500).send({ error: 'Unable to add product to car' });
     }
 });
@@ -89,7 +84,6 @@ CarRouter.get('/:cid/products', async (req, res) => {
         const products = await CarManager.getProductsFromCar(cid);
         res.send(products);
     } catch (error) {
-        console.error('Error fetching products from car:', error);
         res.status(500).send({ error: 'Unable to fetch products from car' });
     }
 });
