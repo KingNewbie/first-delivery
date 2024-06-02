@@ -1,5 +1,9 @@
 import { promises as fs } from 'fs';
 import { nanoid } from 'nanoid';
+import  ProducManager  from './ProductManager.js';
+
+const productAll = new ProducManager();
+
 
 class CarManager {
     constructor() {
@@ -82,6 +86,33 @@ class CarManager {
             throw new Error('Unable to delete car');
         }
     }
-}
+
+    addProductToCar = async (cid, pid) => {
+        try {
+            let cars = await fs.readFile(this.path, 'utf-8');
+            let carsParse = JSON.parse(cars);
+            let carIndex = carsParse.findIndex(car => car.id === cid);
+            if (carIndex === -1) {
+                return "Car not found!";
+            }
+            let car = carsParse[carIndex];
+            let product = await productAll.getProductById(pid);
+            if (!product) {
+                return "Product not found!";
+            }
+            car.products = car.products || [];
+            car.products.push(product);
+            await fs.writeFile(this
+                .path, JSON.stringify(carsParse, null, 2));
+            return "Product added to car successfully!";
+
+        }
+        catch (error) {
+            throw new Error('Unable to add product to car');
+            }
+        }
+    }
+
+
 
 export default new CarManager();
