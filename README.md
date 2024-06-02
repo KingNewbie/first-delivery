@@ -9,8 +9,6 @@ Contenidos
 - [Uso](#uso)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [API Endpoints](#api-endpoints)
-- [Contribuciones](#contribuciones)
-- [Licencia](#licencia)
 
 ## Instalación
 
@@ -33,10 +31,10 @@ sh
 
     npm run dev
 
-Uso
+## Uso
 > [!NOTE]
 > El servidor se ejecutará en http://localhost:8082. Puedes interactuar con el API utilizando herramientas como Postman o cURL.
-Estructura del Proyecto
+## Estructura del Proyecto
 
 plaintext
 
@@ -57,7 +55,7 @@ proyecto-carrito-compras/
 └── README.md
 
 
-API Endpoints
+## API Endpoints
 Carritos
 
     Crear un nuevo carrito
