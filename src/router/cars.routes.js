@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import CarManager from '../controllers/CarManager.js'; // Importación por defecto
+import CarManager from '../controllers/CarManager.js'; 
 
 const CarRouter = Router();
 
