@@ -1,4 +1,4 @@
-# PROYECTO CARRITOS DE COMPRAS
+# PROYECTO CARRITO DE COMPRAS
 
 > Este es un proyecto de ejemplo que implementa un carrito de compras utilizando Node.js, Express y archivos JSON para almacenar los datos. El proyecto permite agregar productos a un carrito, actualizar cantidades, eliminar productos y ver el contenido del carrito.
 
@@ -13,7 +13,7 @@
 ## Instalación
 
 - ### Clona el repositorio:
-  - git clone https://github.com/tu-usuario/proyecto-carrito-compras.git
+  - git clone https://github.com/KingNewbie/first-delivery.git
 cd proyecto-carrito-compras ⏎ 
 
 - ### Instala las dependencias:
