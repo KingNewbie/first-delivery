@@ -15,6 +15,7 @@ class CarManager {
             let cars = await fs.readFile(this.path, 'utf-8');
             let carsParse = JSON.parse(cars);
             car.id = nanoid();
+            car.products = [];
             let carAll = [...carsParse, car];
             await fs.writeFile(this
                 .path, JSON.stringify(carAll, null, 2));
@@ -96,21 +97,25 @@ class CarManager {
                 return "Car not found!";
             }
             let car = carsParse[carIndex];
-            let product = await productAll.getProductById(pid);
+            let product = await productAll.getProductById(pid); // Asegúrate de que productAll.getProductById(pid) es una función válida que retorna el producto.
             if (!product) {
                 return "Product not found!";
             }
             car.products = car.products || [];
-            car.products.push(product);
-            await fs.writeFile(this
-                .path, JSON.stringify(carsParse, null, 2));
-            return "Product added to car successfully!";
-
-        }
-        catch (error) {
-            throw new Error('Unable to add product to car');
+            let productInCar = car.products.find(p => p.id === pid);
+            if (productInCar) {
+                productInCar.cantidad = (productInCar.cantidad || 0) + 1; // Asegurarse de que cantidad no es undefined
+            } else {
+                productInCar = { ...product, cantidad: 1 }; // Inicializar cantidad a 1
+                car.products.push(productInCar);
             }
+            await fs.writeFile(this.path, JSON.stringify(carsParse, null, 2));
+            return "Product added to car successfully!";
+        } catch (error) {
+            throw new Error('Unable to add product to car');
         }
+    };
+
     }
 
 
