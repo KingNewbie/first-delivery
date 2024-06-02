@@ -12,14 +12,14 @@ Contenidos
 
 ## Instalación
 
-[^1]: Clona el repositorio:
+> [^1]: Clona el repositorio:
 - git clone https://github.com/tu-usuario/proyecto-carrito-compras.git
 cd proyecto-carrito-compras
 
-[^2]: Instala las dependencias:
+> [^2]: Instala las dependencias:
 - npm install
 
-[^3]: Inicia el servidor:
+> [^3]: Inicia el servidor:
 - npm run dev
 
 ## Uso
