@@ -33,11 +33,10 @@ sh
 
 ## Uso
 > [!NOTE]
-> El servidor se ejecutará en http://localhost:8082. Puedes interactuar con el API utilizando herramientas como Postman o cURL.
+> El servidor se ejecutará en http://localhost:8081. Puedes interactuar con el API utilizando herramientas como Postman, Insomnia o cURL.
 ## Estructura del Proyecto
 
-plaintext
-
+```
 proyecto-carrito-compras/
 │
 ├── src/
@@ -53,6 +52,7 @@ proyecto-carrito-compras/
 ├── package.json
 ├── package-lock.json
 └── README.md
+```
 
 
 ## API Endpoints
@@ -188,4 +188,4 @@ proyecto-carrito-compras/
     json
     {
       "message": "Product added successfully!"
-      }
+    }
