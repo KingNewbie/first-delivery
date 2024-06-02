@@ -2,7 +2,7 @@
 
 > Este es un proyecto de ejemplo que implementa un carrito de compras utilizando Node.js, Express y archivos JSON para almacenar los datos. El proyecto permite agregar productos a un carrito, actualizar cantidades, eliminar productos y ver el contenido del carrito.
 
-Contenidos
+# Contenidos
 
   
 - [Instalación](#Instalación)
