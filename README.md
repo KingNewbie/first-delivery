@@ -186,7 +186,6 @@ proyecto-carrito-compras/
     Respuesta:
 
     json
-
-{
-  "message": "Product added successfully!"
-}
+    {
+      "message": "Product added successfully!"
+      }
