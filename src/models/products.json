@@ -76,5 +76,31 @@
       "images/thumbnails-square-book.jpg"
     ],
     "id": "PwHYgbuO4nmbj-Xczm87Z"
+  },
+  {
+    "title": "Cuaderno Espiral",
+    "description": "Cuaderno 5 materias",
+    "code": "BookSperial",
+    "price": "350",
+    "status": false,
+    "stock": "1",
+    "category": "scholl",
+    "thumbnails": [
+      "\"de\""
+    ],
+    "id": "-i5zZTPjEm-O5OqO_b4Gl"
+  },
+  {
+    "title": "Libro integral",
+    "description": "Libro primaria",
+    "code": "primaryboo6th",
+    "price": "650",
+    "status": false,
+    "stock": "1",
+    "category": "scholl",
+    "thumbnails": [
+      "\"book\""
+    ],
+    "id": "9-WBUga0UjpBPCA4Idd-o"
   }
 ]

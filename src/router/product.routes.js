@@ -4,23 +4,10 @@ import ProductManager from '../controllers/ProductManager.js';
 const productManager = new ProductManager();
 const ProductRouter = Router();
 
-export function configureSocketIO(io) {
-    io.on('connection', (socket) => {
-        console.log('New client connected');
-        socket.on('disconnect', () => {
-            console.log('Client disconnected');
-        });
-    });
-
-    productManager.on('productAdded', (product) => {
-        io.emit('product-added', product);
-    });
-}
-
-ProductRouter.get("/", async (req, res) => { 
+ProductRouter.get("/", async (req, res) => {
     try {
         const products = await productManager.getProducts();
-        res.render('index', { products });
+        res.render('index', { title: 'Product List', products });
     } catch (error) {
         res.status(500).send({ error: 'Unable to fetch products' });
     }
@@ -44,7 +31,8 @@ ProductRouter.post("/", async (req, res) => {
     try {
         const newProduct = req.body;
         const message = await productManager.writeProducts(newProduct);
-        res.send({ status:"success", message });
+        req.app.get('io').emit('product-added', newProduct);  // Emitir evento de WebSocket
+        res.send({ status: "success", message });
     } catch (error) {
         res.status(500).send({ error: 'Unable to add product' });
     }
@@ -65,6 +53,7 @@ ProductRouter.delete("/:id", async (req, res) => {
     try {
         const id = req.params.id;
         const message = await productManager.deleteProduct(id);
+        req.app.get('io').emit('product-deleted', id);  // Emitir evento de WebSocket
         res.send({ message });
     } catch (error) {
         res.status(500).send({ error: 'Unable to delete product' });

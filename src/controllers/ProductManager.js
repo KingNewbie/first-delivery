@@ -8,7 +8,7 @@ class ProductManager extends EventEmitter {
         this.path = "./src/models/products.json";
     }
 
-    writeProducts = async (product) => {
+    async writeProducts(product) {
         try {
             let products = await fs.readFile(this.path, 'utf-8');
             let productsParse = JSON.parse(products);
@@ -21,9 +21,9 @@ class ProductManager extends EventEmitter {
             console.error('Error writing products:', error);
             throw new Error('Unable to write products');
         }
-    };
+    }
 
-    getProducts = async () => {
+    async getProducts() {
         try {
             let products = await fs.readFile(this.path, 'utf-8');
             let productsParse = JSON.parse(products);
@@ -34,7 +34,7 @@ class ProductManager extends EventEmitter {
         }
     }
 
-    getProductById = async (id) => {
+    async getProductById(id) {
         try {
             let products = await fs.readFile(this.path, 'utf-8');
             let productsParse = JSON.parse(products);
@@ -45,7 +45,7 @@ class ProductManager extends EventEmitter {
         }
     }
 
-    updateProduct = async (id, product) => {
+    async updateProduct(id, product) {
         try {
             let products = await fs.readFile(this.path, 'utf-8');
             let productsParse = JSON.parse(products);
@@ -61,7 +61,7 @@ class ProductManager extends EventEmitter {
         }
     }
 
-    deleteProduct = async (id) => {
+    async deleteProduct(id) {
         try {
             let products = await fs.readFile(this.path, 'utf-8');
             let productsParse = JSON.parse(products);
@@ -71,13 +71,12 @@ class ProductManager extends EventEmitter {
             }
             productsParse.splice(productIndex, 1);
             await fs.writeFile(this.path, JSON.stringify(productsParse, null, 2));
+            this.emit('productDeleted', id);  // Emitir evento
             return "Product deleted successfully!";
-        }
-        catch (error) {
+        } catch (error) {
             throw new Error('Unable to delete product');
         }
     }
-
 }
 
 export default ProductManager;

@@ -2,6 +2,7 @@ import express from 'express';
 import { create } from 'express-handlebars';
 import { ProductRouter } from './router/product.routes.js';
 import { CarRouter } from './router/cars.routes.js';
+import { viewsRouter } from './router/views.router.js';
 import { Server as SocketIOServer } from 'socket.io';
 import http from 'http';
 import ProductManager from './controllers/ProductManager.js';
@@ -20,6 +21,7 @@ app.set('views', './src/views');
 // Configuración de WebSocket
 const server = http.createServer(app);
 const io = new SocketIOServer(server);
+app.set('io', io);  // Pasar la instancia de Socket.IO
 
 // Middleware
 app.use(express.json());
@@ -28,17 +30,7 @@ app.use(express.urlencoded({ extended: true }));
 // Rutas
 app.use("/api/products", ProductRouter);
 app.use("/api/cars", CarRouter);
-
-// Ruta para renderizar vistas
-app.get('/', (req, res) => {
-    res.render('index', { title: 'Product List' });
-});
-
-app.get('/realtimeproducts', async (req, res) => {
-    const productManager = new ProductManager();
-    const products = await productManager.getProducts();
-    res.render('realTimeProducts', { title: 'Real-Time Product List', products });
-});
+app.use("/", viewsRouter);  // Añadir el enrutador de vistas
 
 // Configuración del WebSocket
 io.on('connection', (socket) => {
@@ -46,6 +38,16 @@ io.on('connection', (socket) => {
     socket.on('disconnect', () => {
         console.log('Client disconnected');
     });
+});
+
+// Emitir eventos cuando se agregan o eliminan productos
+const productManager = new ProductManager();
+productManager.on('productAdded', (product) => {
+    io.emit('product-added', product);
+});
+
+productManager.on('productDeleted', (productId) => {
+    io.emit('product-deleted', productId);
 });
 
 const port = 8081;
