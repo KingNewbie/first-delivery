@@ -18,6 +18,9 @@ app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
 app.set('views', './src/views');
 
+// Configuración de archivos estáticos
+app.use(express.static('assets'));
+
 // Configuración de WebSocket
 const server = http.createServer(app);
 const io = new SocketIOServer(server);
