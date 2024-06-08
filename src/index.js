@@ -1,6 +1,9 @@
 import express from 'express';
+import { create } from 'express-handlebars';
 import { ProductRouter } from './router/product.routes.js';
 import { CarRouter } from './router/cars.routes.js';
+import { Server as SocketServer } from 'socket.io';
+import http from 'http';
 
 const app = express();
 const port = 8081;
