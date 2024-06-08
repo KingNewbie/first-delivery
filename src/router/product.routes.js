@@ -1,15 +1,26 @@
-import {Router} from 'express';
+import { Router } from 'express';
 import ProductManager from '../controllers/ProductManager.js';
 
 const productManager = new ProductManager();
-
 const ProductRouter = Router();
 
+export function configureSocketIO(io) {
+    io.on('connection', (socket) => {
+        console.log('New client connected');
+        socket.on('disconnect', () => {
+            console.log('Client disconnected');
+        });
+    });
+
+    productManager.on('productAdded', (product) => {
+        io.emit('product-added', product);
+    });
+}
 
 ProductRouter.get("/", async (req, res) => { 
     try {
         const products = await productManager.getProducts();
-        res.send(products);
+        res.render('index', { products });
     } catch (error) {
         res.status(500).send({ error: 'Unable to fetch products' });
     }
@@ -50,7 +61,6 @@ ProductRouter.put("/:id", async (req, res) => {
     }
 });
 
-
 ProductRouter.delete("/:id", async (req, res) => {
     try {
         const id = req.params.id;
@@ -61,4 +71,4 @@ ProductRouter.delete("/:id", async (req, res) => {
     }
 });
 
-export {ProductRouter};
+export { ProductRouter };

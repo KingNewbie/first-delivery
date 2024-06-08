@@ -1,8 +1,10 @@
 import { promises as fs } from 'fs';
 import { nanoid } from 'nanoid';
+import EventEmitter from 'events';
 
-class ProductManager {
+class ProductManager extends EventEmitter {
     constructor() {
+        super();
         this.path = "./src/models/products.json";
     }
 
@@ -13,6 +15,7 @@ class ProductManager {
             product.id = nanoid();
             let productAll = [...productsParse, product];
             await fs.writeFile(this.path, JSON.stringify(productAll, null, 2));
+            this.emit('productAdded', product);  // Emitir evento
             return "Product added successfully!";
         } catch (error) {
             console.error('Error writing products:', error);
@@ -67,8 +70,7 @@ class ProductManager {
                 return "Product not found!";
             }
             productsParse.splice(productIndex, 1);
-            await fs.writeFile(this
-                .path, JSON.stringify(productsParse, null, 2));
+            await fs.writeFile(this.path, JSON.stringify(productsParse, null, 2));
             return "Product deleted successfully!";
         }
         catch (error) {
