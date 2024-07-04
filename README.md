@@ -32,11 +32,14 @@ proyecto-carrito-compras/
 ├── src/
 │   ├── controllers/
 │   │   └── CarManager.js
+│   │   └── ProductManager.js
 │   ├── models/
 │   │   └── cars.json
+│   │   └── products.json
 │   ├── router/
 │   │   ├── cars.routes.js
 │   │   └── product.routes.js
+│   │   └── views.router.js
 │   └── index.js
 │
 ├── package.json

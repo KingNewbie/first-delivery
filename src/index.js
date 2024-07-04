@@ -6,10 +6,11 @@ import { viewsRouter } from './router/views.router.js';
 import { Server as SocketIOServer } from 'socket.io';
 import http from 'http';
 import ProductManager from './controllers/ProductManager.js';
+import { connectDB } from './data/config.js';
 
 // Configuración de Handlebars
 const app = express();
-const hbs = create({ 
+const hbs = create({
     extname: '.hbs',
     layoutsDir: './src/views/layouts',
     defaultLayout: 'main',
@@ -34,6 +35,16 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/products", ProductRouter);
 app.use("/api/cars", CarRouter);
 app.use("/", viewsRouter);  // Añadir el enrutador de vistas
+
+// Conectar a la base de datos
+(async () => {
+    try {
+        await connectDB();
+    } catch (error) {
+        console.error('Failed to connect to the database', error);
+        process.exit(1);  // Exit the process with a failure code
+    }
+})();
 
 // Configuración del WebSocket
 io.on('connection', (socket) => {
