@@ -5,8 +5,8 @@ import { CarRouter } from './router/cars.routes.js';
 import { viewsRouter } from './router/views.router.js';
 import { Server as SocketIOServer } from 'socket.io';
 import http from 'http';
-import ProductManager from './controllers/ProductManager.js';
 import { connectDB } from './data/config.js';
+import { productModel } from './models/products.js'; // Importar el modelo de productos
 
 // Configuración de Handlebars
 const app = express();
@@ -47,24 +47,36 @@ app.use("/", viewsRouter);  // Añadir el enrutador de vistas
 })();
 
 // Configuración del WebSocket
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
     console.log('New client connected');
-    socket.on('disconnect', () => {
-        console.log('Client disconnected');
+    const products = await ProductModel.find();
+    socket.emit('products', products);
+
+    socket.on('add-product', async (product) => {
+        try {
+            const newProduct = new productModel(product);
+            await newProduct.save();
+            io.emit('product-added', newProduct);
+        } catch (error) {
+            console.error('Error adding product:', error);
+        }
+    });
+
+    socket.on('delete-product', async (productId) => {
+        try {
+            await productModel.findByIdAndDelete(productId);
+            io.emit('product-deleted', productId);
+        } catch (error) {
+            console.error('Error deleting product:', error);
+        }
     });
 });
 
-// Emitir eventos cuando se agregan o eliminan productos
-const productManager = new ProductManager();
-productManager.on('productAdded', (product) => {
-    io.emit('product-added', product);
-});
+// Remover eventos productManager (ya no necesarios)
 
-productManager.on('productDeleted', (productId) => {
-    io.emit('product-deleted', productId);
-});
-
+// Iniciar el servidor
 const port = 8081;
 server.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+

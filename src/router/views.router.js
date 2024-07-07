@@ -1,12 +1,11 @@
 import { Router } from 'express';
-import ProductManager from '../controllers/ProductManager.js';
+import { getProducts } from '../controllers/products.js';
 
 const viewsRouter = Router();
-const productManager = new ProductManager();
 
 viewsRouter.get('/', async (req, res) => {
     try {
-        const products = await productManager.getProducts();
+        const products = await getProducts(req, res);
         res.render('home', { title: 'Product List', products });
     } catch (error) {
         res.status(500).send({ error: 'Unable to fetch products' });
@@ -15,7 +14,7 @@ viewsRouter.get('/', async (req, res) => {
 
 viewsRouter.get('/realtimeproducts', async (req, res) => {
     try {
-        const products = await productManager.getProducts();
+        const products = await getProducts(req, res);
         res.render('realTimeProducts', { title: 'Real-Time Product List', products });
     } catch (error) {
         res.status(500).send({ error: 'Unable to fetch products' });

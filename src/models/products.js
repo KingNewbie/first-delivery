@@ -12,3 +12,5 @@ const ProductSchema = new Schema({
     category: { type:String, required:[true, 'La categoria del producto es obligatorio']},
     thumbnails: { type:String}
 });
+
+export const productModel = model(nameCollection, ProductSchema);
