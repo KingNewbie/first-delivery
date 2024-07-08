@@ -25,16 +25,16 @@ app.use(express.static('assets'));
 // Configuración de WebSocket
 const server = http.createServer(app);
 const io = new SocketIOServer(server);
-app.set('io', io);  // Pasar la instancia de Socket.IO
+app.set('io', io);  
 
-// Middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Rutas
 app.use("/api/products", ProductRouter);
 app.use("/api/cars", CarRouter);
-app.use("/", viewsRouter);  // Añadir el enrutador de vistas
+app.use("/", viewsRouter); 
 
 // Conectar a la base de datos
 (async () => {
@@ -42,7 +42,7 @@ app.use("/", viewsRouter);  // Añadir el enrutador de vistas
         await connectDB();
     } catch (error) {
         console.error('Failed to connect to the database', error);
-        process.exit(1);  // Exit the process with a failure code
+        process.exit(1);  
     }
 })();
 
