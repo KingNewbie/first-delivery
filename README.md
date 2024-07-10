@@ -1,19 +1,20 @@
 # PROYECTO CARRITO DE COMPRAS
 
-> Este es un proyecto de ejemplo que implementa un carrito de compras utilizando Node.js, Express y archivos JSON para almacenar los datos. El proyecto permite agregar productos a un carrito, actualizar cantidades, eliminar productos y ver el contenido del carrito.
+> Este es un proyecto de ejemplo que implementa un carrito de compras utilizando Node.js, Express, MongoDB y WebSockets para la funcionalidad en tiempo real. El proyecto permite agregar productos a un carrito, actualizar cantidades, eliminar productos y ver el contenido del carrito. Además, cuenta con vistas para visualizar los productos en tiempo real y una API para gestionar productos y carritos.
 
 # Contenido
 
   
-- [Instalación](#Instalación)
+- [Instalación](#instalación)
 - [Uso](#uso)
 - [Estructura del Proyecto](#estructura-del-proyecto)
 - [API Endpoints](#api-endpoints)
+- [Vistas](#vistas)
 
 ## Instalación
 
 - ### Clona el repositorio:
-  - git clone https://github.com/KingNewbie/first-delivery.git
+  - git clone https://github.com/KingNewbie/second-delivery.git
   - cd proyecto-carrito-compras ⏎ 
 
 - ### Instala las dependencias:
@@ -31,20 +32,32 @@ proyecto-carrito-compras/
 │
 ├── src/
 │   ├── controllers/
-│   │   └── CarManager.js
-│   │   └── ProductManager.js
+│   │   ├── cars.js
+│   │   └── products.js
+│   ├── data/
+│   │   └── config.js
 │   ├── models/
-│   │   └── cars.json
-│   │   └── products.json
+│   │   ├── cars.js
+│   │   ├── messages.js
+│   │   └── products.js
 │   ├── router/
 │   │   ├── cars.routes.js
-│   │   └── product.routes.js
+│   │   ├── product.routes.js
 │   │   └── views.router.js
+│   ├── views/
+│   │   ├── layouts/
+│   │   │   └── main.hbs
+│   │   ├── home.hbs
+│   │   ├── index.hbs
+│   │   └── realTimeProducts.hbs
 │   └── index.js
 │
+├── assets/
+│   └── styles.css
 ├── package.json
 ├── package-lock.json
 └── README.md
+
 ```
 
 
@@ -182,4 +195,32 @@ proyecto-carrito-compras/
     {
       "message": "Product added successfully!"
     }
-# last_delivery
+### Vistas
+
+# Lista de Productos
+
+    Ruta: GET /
+    Descripción: Muestra una lista de todos los productos disponibles.
+
+# Productos en Tiempo Real
+
+    Ruta: GET /realtimeproducts
+    Descripción: Muestra la lista de productos en tiempo real y permite agregar nuevos productos utilizando WebSockets.
+
+# Ejemplo de Uso en el Navegador
+
+    Navega a http://localhost:8081/ para ver la lista de productos.
+    Navega a http://localhost:8081/realtimeproducts para ver y agregar productos en tiempo real.
+
+# Configuración del WebSocket
+  El proyecto utiliza Socket.IO para actualizar la lista de productos en tiempo real. El código relevante se encuentra en index.js y maneja las conexiones, así como los eventos de agregar y eliminar productos.
+
+# Iniciar el Servidor
+
+  Para iniciar el servidor, usa el siguiente comando:
+
+  npm run dev
+
+### Fase Final
+
+Esta es la fase final del proyecto, donde todas las funcionalidades principales están implementadas y probadas. El proyecto incluye una API REST para gestionar productos y carritos, así como vistas dinámicas para visualizar y manipular los datos en tiempo real.
