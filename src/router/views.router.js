@@ -5,8 +5,8 @@ const viewsRouter = Router();
 
 viewsRouter.get('/', async (req, res) => {
     try {
-        const products = await getProducts(req, res);
-        res.render('home', { title: 'Product List', products });
+        const productsData = await getProducts(req, res, true);
+        res.render('home', { title: 'Product List', products: productsData.payload });
     } catch (error) {
         res.status(500).send({ error: 'Unable to fetch products' });
     }
@@ -14,8 +14,8 @@ viewsRouter.get('/', async (req, res) => {
 
 viewsRouter.get('/realtimeproducts', async (req, res) => {
     try {
-        const products = await getProducts(req, res);
-        res.render('realTimeProducts', { title: 'Real-Time Product List', products });
+        const productsData = await getProducts(req, res, true);
+        res.render('realTimeProducts', { title: 'Real-Time Product List', products: productsData.payload });
     } catch (error) {
         res.status(500).send({ error: 'Unable to fetch products' });
     }

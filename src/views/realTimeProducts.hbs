@@ -87,4 +87,33 @@
 
         document.getElementById('add-product-form').addEventListener('submit', (e) => {
             e.preventDefault();
-            const title = document.getElementById('title').
+            const title = document.getElementById('title').value;
+            const description = document.getElementById('description').value;
+            const code = document.getElementById('code').value;
+            const price = document.getElementById('price').value;
+            const stock = document.getElementById('stock').value;
+            const status = document.getElementById('status').checked;
+            const category = document.getElementById('category').value;
+            const thumbnails = document.getElementById('thumbnails').value.split(',').map(url => url.trim());
+
+            const product = {
+                title,
+                description,
+                code,
+                price,
+                stock,
+                status,
+                category,
+                thumbnails
+            };
+
+            socket.emit('add-product', product);
+        });
+
+        socket.on('product-added-confirmation', (message) => {
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML = `<p>${message}</p>`;
+        });
+    </script>
+</body>
+</html>

@@ -14,6 +14,10 @@ const hbs = create({
     extname: '.hbs',
     layoutsDir: './src/views/layouts',
     defaultLayout: 'main',
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true,
+        allowProtoMethodsByDefault: true
+    }
 });
 app.engine('.hbs', hbs.engine);
 app.set('view engine', '.hbs');
@@ -25,8 +29,7 @@ app.use(express.static('assets'));
 // Configuración de WebSocket
 const server = http.createServer(app);
 const io = new SocketIOServer(server);
-app.set('io', io);  
-
+app.set('io', io);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -34,7 +37,7 @@ app.use(express.urlencoded({ extended: true }));
 // Rutas
 app.use("/api/products", ProductRouter);
 app.use("/api/cars", CarRouter);
-app.use("/", viewsRouter); 
+app.use("/", viewsRouter);
 
 // Conectar a la base de datos
 (async () => {
@@ -42,14 +45,14 @@ app.use("/", viewsRouter);
         await connectDB();
     } catch (error) {
         console.error('Failed to connect to the database', error);
-        process.exit(1);  
+        process.exit(1);
     }
 })();
 
 // Configuración del WebSocket
 io.on('connection', async (socket) => {
     console.log('New client connected');
-    const products = await ProductModel.find();
+    const products = await productModel.find();
     socket.emit('products', products);
 
     socket.on('add-product', async (product) => {
@@ -72,11 +75,8 @@ io.on('connection', async (socket) => {
     });
 });
 
-// Remover eventos productManager (ya no necesarios)
-
 // Iniciar el servidor
 const port = 8081;
 server.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
-
