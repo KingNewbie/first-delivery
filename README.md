@@ -195,27 +195,27 @@ proyecto-carrito-compras/
     {
       "message": "Product added successfully!"
     }
-### Vistas
+## Vistas
 
-# Lista de Productos
+### Lista de Productos
 
     Ruta: GET /
     Descripción: Muestra una lista de todos los productos disponibles.
 
-# Productos en Tiempo Real
+### Productos en Tiempo Real
 
     Ruta: GET /realtimeproducts
     Descripción: Muestra la lista de productos en tiempo real y permite agregar nuevos productos utilizando WebSockets.
 
-# Ejemplo de Uso en el Navegador
+### Ejemplo de Uso en el Navegador
 
     Navega a http://localhost:8081/ para ver la lista de productos.
     Navega a http://localhost:8081/realtimeproducts para ver y agregar productos en tiempo real.
 
-# Configuración del WebSocket
+### Configuración del WebSocket
   El proyecto utiliza Socket.IO para actualizar la lista de productos en tiempo real. El código relevante se encuentra en index.js y maneja las conexiones, así como los eventos de agregar y eliminar productos.
 
-# Iniciar el Servidor
+### Iniciar el Servidor
 
   Para iniciar el servidor, usa el siguiente comando:
 
