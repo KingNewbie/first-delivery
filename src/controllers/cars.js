@@ -7,7 +7,7 @@ export const writeCars = async (req = request, res = response) => {
         const newCar = req.body;
         const car = new CarModel(newCar);
         await car.save();
-        return res.status(201).send({ message: 'Car created' });
+        return res.status(201).send({ message: 'Car created', car });
     } catch (error) {
         console.log('writeCars -> ', error);
         return res.status(500).send({ error: 'Unable to add car' });

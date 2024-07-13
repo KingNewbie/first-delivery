@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product to Car</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <div class="main">
+        <h1>Add Product to Car</h1>
+        <form id="add-product-to-car-form" class="product-form">
+            <input type="text" id="carId" placeholder="Car ID" required>
+            <input type="text" id="productId" placeholder="Product ID" required>
+            <button type="submit">Add Product to Car</button>
+        </form>
+        
+        <div id="messages"></div>
+    </div>
+    
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        document.getElementById('add-product-to-car-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const carId = document.getElementById('carId').value;
+            const productId = document.getElementById('productId').value;
+
+            socket.emit('add-product-to-car', { carId, productId });
+        });
+
+        socket.on('product-added-to-car', (message) => {
+            const messagesDiv = document.getElementById('messages');
+            messagesDiv.innerHTML = `<p>${message}</p>`;
+        });
+    </script>
+</body>
+</html>

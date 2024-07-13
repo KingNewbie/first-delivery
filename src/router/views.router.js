@@ -21,4 +21,8 @@ viewsRouter.get('/realtimeproducts', async (req, res) => {
     }
 });
 
+viewsRouter.get('/addProductToCar', (req, res) => {
+    res.render('addProductToCar', { title: 'Add Product to Car' });
+});
+
 export { viewsRouter };

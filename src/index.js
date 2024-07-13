@@ -7,6 +7,8 @@ import { Server as SocketIOServer } from 'socket.io';
 import http from 'http';
 import { connectDB } from './data/config.js';
 import { productModel } from './models/products.js'; // Importar el modelo de productos
+import { CarModel } from './models/cars.js'; // Importar el modelo de carros
+import mongoose from 'mongoose'; // Importar mongoose para validar ObjectId
 
 // Configuración de Handlebars
 const app = express();
@@ -71,6 +73,31 @@ io.on('connection', async (socket) => {
             io.emit('product-deleted', productId);
         } catch (error) {
             console.error('Error deleting product:', error);
+        }
+    });
+
+    socket.on('add-product-to-car', async ({ carId, productId }) => {
+        try {
+            if (!mongoose.isValidObjectId(carId) || !mongoose.isValidObjectId(productId)) {
+                socket.emit('product-added-to-car', 'Invalid car ID or product ID');
+                return;
+            }
+            const car = await CarModel.findById(carId);
+            if (!car) {
+                socket.emit('product-added-to-car', 'Car not found');
+                return;
+            }
+            const product = car.products.find(p => p.id.toString() === productId);
+            if (product) {
+                product.quantity++;
+            } else {
+                car.products.push({ id: productId, quantity: 1 });
+            }
+            await car.save();
+            socket.emit('product-added-to-car', 'Product added to car successfully');
+        } catch (error) {
+            console.error('Error adding product to car:', error);
+            socket.emit('product-added-to-car', 'Unable to add product to car');
         }
     });
 });
