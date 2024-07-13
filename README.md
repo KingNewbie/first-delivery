@@ -49,7 +49,8 @@ proyecto-carrito-compras/
 │   │   │   └── main.hbs
 │   │   ├── home.hbs
 │   │   ├── index.hbs
-│   │   └── realTimeProducts.hbs
+│   │   ├── realTimeProducts.hbs
+│   │   └── addProductToCar.hbs
 │   └── index.js
 │
 ├── assets/
@@ -57,6 +58,7 @@ proyecto-carrito-compras/
 ├── package.json
 ├── package-lock.json
 └── README.md
+
 
 ```
 
@@ -209,8 +211,9 @@ proyecto-carrito-compras/
 
 ### Ejemplo de Uso en el Navegador
 
-    Navega a http://localhost:8081/ para ver la lista de productos.
-    Navega a http://localhost:8081/realtimeproducts para ver y agregar productos en tiempo real.
+    - Navega a http://localhost:8081/ para ver la lista de productos.
+    - Navega a http://localhost:8081/realtimeproducts para ver y agregar productos en tiempo real.
+    - Navega a http://localhost:8081/addProductToCar para agregar productos a un carrito específico.
 
 ### Configuración del WebSocket
   El proyecto utiliza Socket.IO para actualizar la lista de productos en tiempo real. El código relevante se encuentra en index.js y maneja las conexiones, así como los eventos de agregar y eliminar productos.
